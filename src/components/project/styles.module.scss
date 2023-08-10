@@ -1,0 +1,20 @@
+@use "../../styles/colors.scss" as *;
+.projectContainer {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    height: 150px;
+    border-bottom: 1px solid $black;
+    transition: all 0.3s ease;
+    .right {
+        display: flex;
+        justify-content: space-between;
+        width: 60%;
+        font-size: 20px;
+        font-weight: 400;
+    }
+}
+
+.otherIsActive {
+    opacity: 0.3;
+}

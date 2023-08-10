@@ -1,0 +1,48 @@
+.wordContainer {
+    position: relative;
+    width: 40%;
+    overflow: hidden;
+    h2 {
+        font-weight: 400;
+        font-size: 60px;
+        // font-family: "LeMurmure";
+    }
+}
+
+// .wordContainer:hover .letter {
+//     transform: translateY(-100%);
+// }
+.newWord {
+    position: absolute;
+    transform: translateY(-20%);
+    font-weight: 500 !important;
+    // font-family: "Porsche";
+    // // letter-spacing: 3px;
+    // font-size: 45px !important;
+    font-style: italic;
+    // background: url('../../assets/images/iridescent.avif') center/cover no-repeat;
+    // background-clip: text;
+    // -webkit-background-clip: text;
+    // color: rgba(0, 0, 0, 0.2);
+    // background-size: 200vh 100vw;
+    // background-position: calc(var(--mouse-x) - 100vw), calc(var(--mouse-y) - 100vw);
+    // transition: background-position 2s ease;
+}
+
+.letter {
+    display: inline-block;
+    transition: all 0.25s;
+    transition-timing-function: cubic-bezier(.86, .02, .55, .95);
+}
+
+.letter_1 {}
+
+.isHovered {
+    transform: translateY(-90%);
+}
+
+@for $i from 0 through 20 {
+    .letter_#{$i} {
+        transition-delay: calc(#{$i}s * 0.01);
+    }
+}
