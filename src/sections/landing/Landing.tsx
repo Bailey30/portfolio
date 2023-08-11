@@ -12,7 +12,7 @@ const Landing = () => {
                 <Bio />
 
                 {/* <Trail /> */}
-                {/* <Lines /> */}
+                <Lines />
             </div>
         </Section>
     );

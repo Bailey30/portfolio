@@ -8,7 +8,6 @@ interface Props {
 
 const WordAnimation = ({ word, isHovered }: Props) => {
     const splitWord = word.split("");
-    console.log(splitWord);
 
     return (
         <div className={styles.wordContainer}>
@@ -16,7 +15,7 @@ const WordAnimation = ({ word, isHovered }: Props) => {
                 {splitWord.map((letter, i) => {
                     return (
                         <div
-                            key={letter}
+                            key={letter + i}
                             className={`${styles.letter} ${
                                 styles["letter_" + i]
                             } ${isHovered && styles.isHovered}`}
@@ -30,7 +29,7 @@ const WordAnimation = ({ word, isHovered }: Props) => {
                 {splitWord.map((letter, i) => {
                     return (
                         <div
-                            key={letter}
+                            key={letter + i}
                             className={`${styles.letter} ${
                                 styles["letter_" + i]
                             } ${isHovered && styles.isHovered}`}

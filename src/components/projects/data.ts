@@ -25,4 +25,9 @@ export const data: ProjectData = [
         ],
         role: "Full stack",
     },
+    {
+        name: "Pinnacle",
+        tools: ["Typescript", "React", "Redux", "Styled Components"],
+        role: "Front end",
+    },
 ];

@@ -1,7 +1,10 @@
 import React, { useEffect, useRef, useState } from "react";
 import styles from "./styles.module.scss";
 import { Paths } from "./paths";
+import { useSelector } from "react-redux";
+import { RootState } from "../../redux/store";
 const Lines = () => {
+    const level = useSelector((state: RootState) => state.scroll.level);
     const canvasRef = useRef<HTMLCanvasElement>(null);
     const containerRef = useRef<HTMLDivElement>(null);
     const [ctx, setCtx] = useState<CanvasRenderingContext2D | null>();
@@ -11,7 +14,6 @@ const Lines = () => {
     const [pathsState, setPathsState] = useState<any>();
 
     let oldElapsedTime = 0;
-    let gridSize = 10;
 
     function animate(timestamp?: number) {
         const elapsedTime = timestamp as any;
@@ -75,19 +77,28 @@ const Lines = () => {
             containerRect
         );
         setPathsState(paths);
-
-        const canvas = canvasRef.current;
-        if (!canvas) return;
-        canvas.width = containerRef?.current?.clientWidth;
-        canvas.height = containerRef?.current?.clientHeight;
-
-        document.addEventListener("mousemove", (e) => {
-            // cursor.x = e.clientX;
-            // cursor.y = e.clientY;
-            // setCursor({ x: e.clientX, y: e.clientY });
-            // console.log(cursor);
-        });
+        console.log(level);
+        // if (level === 0) {
+        //     // paths.isDrawing = true;
+        //     paths.drawGrid(0);
+        // } else {
+        //     console.log(level);
+        //     // paths.isDrawing = false;
+        //     // paths.stopAnimation();
+        // }
     }, [ctx]);
+
+    useEffect(() => {
+        if (!pathsState) return;
+        if (level === 0) {
+            // paths.isDrawing = true;
+            pathsState.drawGrid(0);
+        } else {
+            setTimeout(() => {
+                pathsState.stopAnimation();
+            }, 1000);
+        }
+    }, [level]);
 
     // useEffect(() => {
     //     if (ctx === null || !ctx) return;

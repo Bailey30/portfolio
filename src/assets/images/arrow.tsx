@@ -2,7 +2,7 @@ import React from "react";
 
 interface Props {
     stroke: string;
-    onClick: () => void;
+    onClick?: () => void;
 }
 const Arrow = ({ stroke, onClick }: Props) => {
     const arrowStyle = {

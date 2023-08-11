@@ -34,7 +34,7 @@ const Bio = () => {
                 <div className={styles.bioTop}>
                     <div className={styles.row}>
                         <h1>
-                            ALEX BAILEY //{" "}
+                            ALEX BAILEY {">>>>"}{" "}
                             <a
                                 href="https://www.linkedin.com/in/alex-bailey-9ba821229/"
                                 target="_blank"
@@ -66,15 +66,17 @@ const Bio = () => {
                         <h1>ENGLAND</h1>
                     </div>
                 </div>
-                <Lines />
+                {/* <Lines /> */}
                 <div className={`${styles.row} ${styles.lastRow}`}>
-                    <h4 className={`${styles.coloredText}`}>
-                        THINGS I'VE DONE{" "}
-                    </h4>
-                    <div className={`${styles.imageContainer} `}>
-                        <Arrow stroke="#D1FE2F" onClick={scrollDown} />
-                        {/* <Arrow stroke="#D1FE2F" /> */}
-                        {/* <Arrow stroke="#D1FE2F" /> */}
+                    <div onClick={scrollDown}>
+                        <h4 className={`${styles.coloredText}`}>
+                            THINGS I'VE DONE{" "}
+                        </h4>
+                        <div className={`${styles.imageContainer} `}>
+                            <Arrow stroke="#D1FE2F" />
+                            {/* <Arrow stroke="#D1FE2F" /> */}
+                            {/* <Arrow stroke="#D1FE2F" /> */}
+                        </div>
                     </div>
                 </div>
             </div>
