@@ -1,16 +1,13 @@
-@use "./styles/colors.scss" as *;
-.background {
-    height: 100vh;
-    overflow: hidden;
-    background: $grey1;
-}
-
-.movingContainer {
-    transition: all 0.7s ease;
-}
-
-.work {
-    transform: translate3d(0, -100vh, 0);
-}
-
-.landing {}
+        @use "./styles/colors.scss" as *;
+        .background {
+            height: 100vh;
+            overflow: hidden;
+            background: $grey1;
+            background-color: #e6dfdf;
+            .movingContainer {
+                transition: all 0.7s ease;
+            }
+            .work {
+                transform: translate3d(0, -100vh, 0);
+            }
+        }

@@ -14,6 +14,11 @@ export const data: ProjectData = [
         role: "Full stack",
     },
     {
+        name: "Evmet",
+        tools: ["TypeScript", "React", "Styled Components"],
+        role: "Front end",
+    },
+    {
         name: "eco4u",
         tools: [
             "TypeScript",

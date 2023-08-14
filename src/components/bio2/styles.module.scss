@@ -1,0 +1,125 @@
+@use "../../styles/colors.scss" as *;
+:root {
+    --mouse-x: 0;
+    --mouse-y: 0;
+}
+
+.bioSection {
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    // max-width: 1300px;
+    // width: 80%;
+    height: 100%;
+    margin: 0 auto;
+    position: relative;
+}
+
+.bioContainer {
+    padding: 50px;
+    z-index: 2;
+    // display: inline;
+    display: flex;
+    // flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+    // background-color: $orange;
+    // height: fit-content;
+    // color: white;
+    // mix-blend-mode: screen;
+    h1 {
+        // color: rgb(139, 134, 134);
+        font-weight: 500;
+        font-weight: 200;
+        font-family: 'Inter', sans-serif;
+        // color: #27348a;
+        // color: #030a02;
+        // display: inline;
+        // background-color: white;
+    }
+}
+
+.row {
+    // display: flex;
+    // align-items: center;
+    justify-content: space-between;
+    // height: 45px;
+    h1 {
+        font-size: 2.5vw;
+        // display: inline;
+    }
+    .imageContainer {
+        cursor: pointer;
+        display: flex;
+        align-items: center;
+        height: 100%;
+        margin-left: 10px;
+        // border: 1px solid red;
+        svg {
+            // border: 1px solid red;
+            margin-bottom: 3px;
+            height: 33px;
+            margin-right: 10px;
+        }
+    }
+    .github {}
+    &.developer {
+        h1 {}
+    }
+    &.link {
+        font-style: italic;
+        cursor: pointer;
+        h1 {
+            // font-size: 50px;
+        }
+    }
+    &.lastRow {
+        div {
+            h1 {
+                // font-size: 40px;
+            }
+        }
+    }
+}
+
+.arrow {
+    height: 1.9vw;
+    margin-left: 10px;
+    position: relative;
+    top: -0.5px;
+    &.up {
+        top: 2px;
+        transform: rotate(-90deg);
+    }
+}
+
+.lastRow {
+    position: absolute;
+    bottom: 0;
+    right: 0;
+    div {
+        cursor: pointer;
+        align-items: center;
+        display: flex;
+    }
+    img {
+        // height: 40px;
+    }
+}
+
+.coloredText {
+    mix-blend-mode: difference;
+    // filter: grayscale(0%) invert(100%) !important;
+    font-size: 60px;
+    font-weight: 400;
+    font-family: "Porsche";
+    // font-weight: 500;
+    background: url('../../assets/images/iridescent.avif') center/cover no-repeat;
+    background-clip: text;
+    -webkit-background-clip: text;
+    color: rgba(0, 0, 0, 0.2);
+    background-size: 200vw 100vh;
+    background-position: calc(var(--mouse-x) - 100vw), calc(var(--mouse-y) - 100vw);
+    transition: background-position 2s ease;
+}

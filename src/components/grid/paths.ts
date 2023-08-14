@@ -33,7 +33,8 @@ export class Paths {
     gradient: any;
     maxArea: number;
     isDrawing: boolean;
-    b: number;
+    uy: number;
+    ux: number;
 
     constructor(ctx: any, width: any, height: any, containerRect: any) {
         canvas = document.getElementById("canvas");
@@ -62,11 +63,12 @@ export class Paths {
         this.posY = this.height;
         this.grid = [];
         this.mouse = { x: undefined, y: undefined };
-        this.gridSize = 19;
-        this.radius = 40;
-        this.minRadius = 0;
-        this.maxArea = 100;
-        this.b = 225;
+        this.gridSize = 30;
+        this.radius = 20;
+        this.minRadius = 5;
+        this.maxArea = 200;
+        this.uy = this.height;
+        this.ux = this.width;
         this.createGrid();
     }
 
@@ -74,63 +76,23 @@ export class Paths {
         console.log("stop");
         cancelAnimationFrame(currentAnimation);
     }
-    draw(timeStamp: number) {
-        // if (!this.isDrawing) return;
-
-        let deltaTime = timeStamp - this.lastTime;
-
-        this.lastTime = timeStamp;
-        this.ctx!.clearRect(0, 0, this.width, this.height);
-        this.radius += this.velocity;
-        for (let y = 0; y < this.height; y += this.gridSize) {
-            for (let x = 0; x < this.width; x += this.gridSize) {
-                var posx = x;
-                var posy = y;
-                let dx = mouse.x - posx; // distance between on the x axis
-                let dy = mouse.y - posy; // distance between on the y axis
-                let distance = dx * dx + dy * dy;
-                let r = 1;
-
-                // let size = 10 - distance / 500;
-                // if (distance / 100 < 100) {
-                //     // r += Math.max(5 - distance / 1000, 2);
-                //     if (size > 0) {
-                //         r += size;
-                //     } else {
-                //         r = 1;
-                //     }
-                // }
-
-                if (posx === mouse.x) {
-                    // r += this.radius;
-                }
-
-                this.ctx!.fillStyle = "black";
-                this.ctx!.beginPath();
-                this.ctx!.arc(x, y, r, 0, 2 * Math.PI);
-                // this.ctx!.moveTo(x, y);
-                // this.ctx!.lineTo(mouse.x, mouse.y);
-                this.ctx!.stroke();
-                // this.ctx!.fill();
-            }
-        }
-        currentAnimation = requestAnimationFrame(this.draw.bind(this));
-    }
 
     drawGrid(timestamp: number) {
+        const elapsedTime = timestamp as any;
+        const deltaTime = elapsedTime - this.timer;
+        this.timer = elapsedTime;
         this.ctx!.clearRect(0, 0, this.width, this.height);
         // this.ctx!.fillStyle = this.gradient;
         this.ctx!.font = "10px serif";
-
-        const maxArea = 70;
+        // const maxArea = 100;
         const increaseVelocity = 3;
-        const decreaseVelocity = 0.3;
-
+        const decreaseVelocity = 0.15;
+        this.uy -= 1;
+        this.ux += 1;
         // this.ctx!.fillRect(0, 0, this.width, this.height);
         for (let i = 0; i < this.grid.length; i += 1) {
             let x = this.grid[i].x;
             let y = this.grid[i].y;
-            let b = this.grid[i].b;
 
             let dx = mouse.x - x; // distance between on the x axis
             let dy = mouse.y - y; // distance between on the y axis
@@ -138,7 +100,8 @@ export class Paths {
             // let dotSize = this.radius - (pt * 2) / this.gridSize; // the size of each dot based on its distance from the mouse (pt * 2 normalizes the value somehow)
 
             // Calculate the normalized distance ratio
-            let distanceRatio = Math.min(pt / maxArea, 1);
+            let distanceRatio = Math.min(x / this.width, 1);
+            let negative = 1 - distanceRatio;
 
             // Calculate the desired dot size based on distanceRatio
             let dotSize = (this.radius - this.minRadius) * (1 - distanceRatio);
@@ -148,42 +111,76 @@ export class Paths {
 
             // this.grid[i].r = dotSize;
 
-            if (pt < maxArea) {
-                if (this.grid[i].r < dotSize) {
-                    this.grid[i].r += dotSize;
-                }
-            } else {
-                // trail fades over time
-                if (this.grid[i].r > decreaseVelocity + 5) {
-                    this.grid[i].r -= decreaseVelocity;
-                }
-            }
+            // let br = 0; // the maximum size the dot should be based on how far it is from the mouse
+            // let ar = 0; // the size the dot becomes after being increased (it goes over the max amount)
+            // let dr = ar - br; //
+
+            // let cy =
+            //     Math.sin(
+            //         elapsedTime / 50 +
+            //             this.ux / 10 +
+            //             (x * 1000) / (this.width / 2)
+            //     ) *
+            //         10 +
+            //     Math.max(this.uy, this.grid[i].y);
+
+            let freq = elapsedTime / 1000;
+            // let amp = x < canvas.width / 2 ? 50 : 100;
+            let amp = Math.max(x / 3, 70);
+            let yOffset = this.height / 4;
+
+            let cy = Math.sin(x / 100 - freq) * amp + y / 2 + yOffset;
+            // Math.max(Math.max(this.uy, this.grid[i].y), this.uy);
+
+            // this.grid[i].y =
+            //     Math.sin(elapsedTime / 10 + x / (this.width / 4)) * 100 + y;
+            // if (
+            //     this.grid[i].y <= this.uy &&
+            //     this.grid[i].y > this.uy - this.gridSize * 2
+            // ) {
+            //     ny = cy;
+            // }
+
+            // this.grid[i].y +=
+
+            // if (pt < this.maxArea) {
+            //     this.grid[i].r += 1;
+            //     // if (this.grid[i].r < dotSize) {
+            //     // }
+            // } else {
+            //     // trail fades over time
+            //     if (this.grid[i].r > decreaseVelocity) {
+            //         this.grid[i].r -= decreaseVelocity;
+            //     }
+            // }
             // this.ctx!.fillStyle = "white";
 
-            // move the grid
-            this.grid[i].x -= 1;
-            this.grid[i].y -= 0.75;
+            // this.grid[i].x -= 3;
+            // this.grid[i].y -= 1.5;
 
-            if (this.grid[i].x < 0 - maxArea) {
-                this.grid[i].x = this.width - 1;
-                this.grid[i].r = 0;
-                // this.grid[i].b = 3;
+            // if (this.grid[i].x < 0 - this.maxArea + 20) {
+            //     this.grid[i].x = this.width;
+            //     this.grid[i].r = 0;
+            // }
+            // if (this.grid[i].y < 0 - this.maxArea + 10) {
+            //     this.grid[i].y = this.height;
+            //     this.grid[i].r = 0;
+            // }
+
+            let fillStyle = "";
+
+            if (y > this.height / 2) {
+                fillStyle = `rgba(187,73,59,${negative})`;
+            } else {
+                fillStyle = `rgba(187,73,59,${distanceRatio})`;
             }
-            if (this.grid[i].y < 0 - maxArea) {
-                this.grid[i].y = this.height;
-                this.grid[i].r = 0;
-                // this.grid[i].b = 3;
-            }
 
-            // console.log(this.grid[i].b);
-
-            // console.log(this.grid[i].x);
-
-            // this.ctx!.fillStyle = `rgb(225,${Math.max(b, 200)}, ${225} )`;
-            this.ctx!.fillStyle = `white`;
+            this.ctx!.fillStyle = fillStyle;
 
             this.ctx!.beginPath();
-            this.ctx!.arc(x, y, this.grid[i].r.toFixed(2), 0, 2 * Math.PI);
+            this.ctx!.arc(this.grid[i].x, cy, this.grid[i].r, 0, 2 * Math.PI);
+
+            // this.ctx!.fillRect(x, y, this.radius, this.radius);
 
             this.ctx!.fill();
         }
@@ -193,9 +190,9 @@ export class Paths {
     }
 
     createGrid() {
-        for (let y = 0; y < this.height + this.maxArea; y += this.gridSize) {
-            for (let x = 0; x < this.width + this.maxArea; x += this.gridSize) {
-                this.grid.push({ x: x, y: y, r: this.minRadius, b: this.b });
+        for (let y = 0; y < this.height; y += this.gridSize) {
+            for (let x = 0; x < this.width; x += this.gridSize) {
+                this.grid.push({ x: x, y: y, r: this.minRadius });
             }
         }
 

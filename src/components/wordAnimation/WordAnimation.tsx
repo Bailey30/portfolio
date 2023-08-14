@@ -4,15 +4,22 @@ import styles from "./styles.module.scss";
 interface Props {
     word: string;
     isHovered: boolean;
+    type: string;
 }
 
-const WordAnimation = ({ word, isHovered }: Props) => {
+const WordAnimation = ({ word, isHovered, type }: Props) => {
     const splitWord = word.split("");
+    console.log(splitWord);
 
     return (
-        <div className={styles.wordContainer}>
+        <div
+            className={`${styles.wordContainer} ${
+                type === "view" && styles.view
+            }`}
+        >
             <h2 className={styles.originalWord}>
                 {splitWord.map((letter, i) => {
+                    console.log(letter);
                     return (
                         <div
                             key={letter + i}
@@ -20,7 +27,7 @@ const WordAnimation = ({ word, isHovered }: Props) => {
                                 styles["letter_" + i]
                             } ${isHovered && styles.isHovered}`}
                         >
-                            {letter}
+                            <span>{letter === " " ? " " : letter}</span>
                         </div>
                     );
                 })}

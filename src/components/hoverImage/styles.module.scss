@@ -1,0 +1,73 @@
+.imageContainer {
+    position: absolute;
+    z-index: 1;
+    left: var(--mouse-x);
+    top: var(--mouse-y);
+    pointer-events: none;
+    transform: translate(-50%, -50%);
+    height: 400px;
+    max-height: 300px;
+    width: 600px;
+    overflow: hidden;
+    img {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        width: 100%;
+        margin: 0 auto;
+    }
+}
+
+.prevImage {
+    // transition: all 0.75s ease;
+    // transform: translate(-50%, -20%);
+    // z-index: 2;
+}
+
+@keyframes goUp {
+    from {
+        transform: translate(-50%, 50%);
+    }
+    to {
+        transform: translate(-50%, -50%);
+    }
+}
+
+@keyframes exit {
+    from {
+        transform: translate(-50%, -50%);
+    }
+    to {
+        transform: translate(-50%, -160%);
+    }
+}
+
+@keyframes goDown {
+    from {
+        transform: translate(-50%, -50%);
+    }
+    to {
+        transform: translate(-50%, -20%);
+    }
+}
+
+.animate {
+    animation: 0.5s ease goUp forwards;
+    animation-timing-function: cubic-bezier(.95, 0, .66, 1)
+}
+
+.animate.activeImage {
+    // z-index: 4 !important;
+}
+
+.exit {
+    animation: 0.5s ease exit forwards;
+    animation-timing-function: cubic-bezier(.84, .03, .44, .95)
+}
+
+@for $i from 0 through 20 {
+    .imageContainer:nth-child(#{$i}) {
+        z-index: #{$i}
+    }
+}

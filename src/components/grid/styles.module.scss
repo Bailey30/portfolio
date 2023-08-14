@@ -2,25 +2,24 @@
 .linesContainer {
     // padding: 0 50px;
     // max-width: 1300px;
-    width: 100%;
+    width: 50%;
     // margin: 0 auto;
+    padding: 50px 50px;
     height: 100%; // todo calculate proper height and make canvas controller respond on resize
-    margin-top: -10px;
+    // margin-top: -10px;
     position: absolute;
     top: 0%;
-    left: 50%;
+    right: 0%;
     // opacity: 0.5;
-    transform: translate(-50%, 0%);
+    transform: translate(0%, 0%);
     // border-bottom: 1px solid $black;
     // border: 10px solid red;
-    // mix-blend-mode: multiply;
-    // filter: grayscale(0%) invert(50%);
 }
 
 canvas {
     // border: 1px solid red;
-    // max-width: 100%;
-    // max-height: 100%;
+    max-width: 100%;
+    height: 100%;
     // border: 10px solid red;
-    filter: blur(10px);
+    // filter: blur(20px);
 }

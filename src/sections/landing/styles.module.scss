@@ -1,7 +1,23 @@
 @use "../../styles/colors.scss" as *;
 .landingContainer {
     position: relative;
-    height: 100dvh;
+    height: 100vh;
     // background-color: $black;
-    background-color: $grey1;
+    // background-color: $grey1;
+    // background-color: rgb(7, 31, 136);
+    // background-color: #ffd7eca6;
+    // mix-blend-mode: difference;
+    // filter: grayscale(0%) invert(100%);
+}
+
+.filterDiv {
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 100%;
+    width: 100%;
+    opacity: 30%;
+    pointer-events: NONE;
+    // background-color: green;
+    filter: url(#noiseFilter) blur(2px);
 }
