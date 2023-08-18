@@ -1,1 +1,123 @@
+@use "../../styles/colors.scss" as *;
+.infoContainer {
+    padding: 50px 50px 0 50px;
+    position: relative;
+    z-index: 30;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    height: 100vh;
+    width: 100vw;
+}
 
+.imageContainer {
+    width: 100%;
+    margin-left: auto;
+    // overflow: hidden;
+    align-self: flex-end;
+    margin-top: auto;
+    margin-bottom: 35px;
+    transition: all 0.5s ease;
+    .divInner {
+        margin: 0 auto;
+        overflow: hidden;
+        opacity: 0;
+        &.visible {
+            opacity: 1;
+        }
+    }
+    img {
+        position: relative;
+        top: -1px;
+        left: -3px;
+        display: block;
+        width: 100%;
+    }
+}
+
+.info {
+    width: 100%;
+    margin: 0 auto;
+    margin-bottom: auto;
+    position: relative;
+    color: rgb(77, 77, 77);
+    .nav {
+        position: absolute;
+        left: 0;
+        top: 0;
+        display: flex;
+        justify-content: space-between;
+        // padding: 50px 50px 0px 50px;
+        width: 100%;
+        img {
+            position: relative;
+            z-index: 10;
+            cursor: pointer;
+            height: 1.9vw;
+            transform: rotate(180deg);
+        }
+    }
+    .infoInner {
+        max-width: 1050px;
+        margin: 0 auto;
+        .name {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 5px;
+            align-items: center;
+            // height: 30px;
+            h3 {
+                font-weight: 300;
+                font-size: 38px;
+                line-height: 30px;
+            }
+            a {
+                position: relative;
+                color: $green3;
+                font-style: italic;
+                display: flex;
+                font-weight: 700;
+                justify-content: center;
+                align-items: center;
+                font-size: 18px;
+                border: 5px solid $green3;
+                border-radius: 50%;
+                height: 55px;
+                width: 125px;
+                img {
+                    height: 12px;
+                    transform: rotate(-90deg);
+                    margin-left: 5px;
+                    margin-top: 2px;
+                }
+                // &:hover {
+                //     border-width: 3px;
+                //     // font-weight: 900;
+                //     bottom: 1px;
+                //     left: 1px;
+                // }
+            }
+        }
+        .date {
+            font-weight: 300;
+            margin-bottom: 3px;
+        }
+        .role {
+            font-size: 1vw;
+            font-weight: 100;
+            line-height: 30px;
+        }
+        .tools {
+            font-weight: 300;
+            font-size: 25px;
+            line-height: 45px;
+        }
+    }
+}
+
+.footer {
+    display: flex;
+    justify-content: flex-end;
+    height: 40px;
+    padding: 0 50px;
+}

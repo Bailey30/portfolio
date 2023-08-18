@@ -1,20 +1,20 @@
 .imageContainer {
     position: absolute;
-    z-index: 1;
-    left: var(--mouse-x);
-    top: var(--mouse-y);
+    // z-index: -10000 !important;
+    left: calc(var(--mouse-x) - 15px);
+    top: calc(var(--mouse-y) - 30px);
     pointer-events: none;
     transform: translate(-50%, -50%);
-    height: 400px;
-    max-height: 300px;
-    width: 600px;
+    height: 200px;
+    width: 200px;
+    overflow: hidden;
     overflow: hidden;
     img {
         position: absolute;
         top: 50%;
         left: 50%;
         transform: translate(-50%, -50%);
-        width: 100%;
+        min-width: 101%;
         margin: 0 auto;
     }
 }
@@ -53,7 +53,7 @@
 }
 
 .animate {
-    animation: 0.5s ease goUp forwards;
+    animation: 0.35s ease goUp forwards;
     animation-timing-function: cubic-bezier(.95, 0, .66, 1)
 }
 

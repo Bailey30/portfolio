@@ -5,29 +5,30 @@ interface Props {
     word: string;
     isHovered: boolean;
     type: string;
+    otherExpanded?: boolean;
 }
 
-const WordAnimation = ({ word, isHovered, type }: Props) => {
+const WordAnimation = ({ word, isHovered, type, otherExpanded }: Props) => {
     const splitWord = word.split("");
-    console.log(splitWord);
 
     return (
         <div
             className={`${styles.wordContainer} ${
                 type === "view" && styles.view
-            }`}
+            } ${otherExpanded && styles.otherExpanded}`}
         >
             <h2 className={styles.originalWord}>
                 {splitWord.map((letter, i) => {
-                    console.log(letter);
                     return (
                         <div
                             key={letter + i}
                             className={`${styles.letter} ${
                                 styles["letter_" + i]
-                            } ${isHovered && styles.isHovered}`}
+                            } ${isHovered && styles.isHovered} ${
+                                letter === " " && styles.space
+                            }`}
                         >
-                            <span>{letter === " " ? " " : letter}</span>
+                            <span>{letter}</span>
                         </div>
                     );
                 })}
@@ -39,7 +40,9 @@ const WordAnimation = ({ word, isHovered, type }: Props) => {
                             key={letter + i}
                             className={`${styles.letter} ${
                                 styles["letter_" + i]
-                            } ${isHovered && styles.isHovered}`}
+                            } ${isHovered && styles.isHovered} ${
+                                letter === " " && styles.space
+                            }`}
                         >
                             {letter}
                         </div>

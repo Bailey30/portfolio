@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import logo from "./logo.svg";
 import styles from "./app.module.scss";
 import Landing from "./sections/landing/Landing";
@@ -6,25 +6,67 @@ import { useScroll } from "./hooks/useScroll";
 import Work from "./sections/work/Work";
 import { useSelector } from "react-redux";
 import { RootState } from "./redux/store";
+import UseHistory from "./hooks/useHistory";
 
 type Section = "styles.landing" | "styles.work";
 function App() {
     useScroll();
-    const level = useSelector((state: RootState) => state.scroll.level);
+    UseHistory();
+
+    useEffect(() => {
+        window.addEventListener("load", () => {
+            if (window.location.pathname !== "/") {
+                window.history.pushState(null, "", "/");
+            }
+        });
+
+        return () => {
+            window.removeEventListener("load", () => {});
+        };
+    }, []);
+
+    const { project, level } = useSelector((state: RootState) => state.scroll);
 
     const sections = ["landing", "work"];
 
     return (
-        <div className={`${styles.background}`}>
-            <div
-                className={`${styles.movingContainer} ${
-                    styles[sections[level]]
-                }`}
-            >
-                <Landing />
-                <Work />
+        <>
+            <div className={`${styles.background}`}>
+                <div
+                    className={`${styles.movingContainer} ${
+                        styles[sections[level]]
+                    } ${styles[project]}`}
+                >
+                    <Landing />
+                    <Work />
+                </div>
+                <svg>
+                    <filter id="noiseFilter">
+                        <feTurbulence
+                            type="turbulence"
+                            baseFrequency="0.5"
+                            stitchTiles="stitch"
+                        />
+                        {/* <feColorMatrix
+                        in="colorNoise"
+                        type="matrix"
+                        values="1 0 0 0 0 0 1 0 0 0 0 0 1 0 0 0 0 0 1 0"
+                        />
+                        <feComposite
+                        operator="in"
+                        in2="SourceGraphic"
+                        result="monoNoise"
+                    /> */}
+                        {/* <feBlend
+                            in="SourceGraphic"
+                            in2="monoNoise"
+                            mode="screen"
+                        /> */}
+                    </filter>
+                </svg>
+                <div className={styles.filterDiv}></div>
             </div>
-        </div>
+        </>
     );
 }
 

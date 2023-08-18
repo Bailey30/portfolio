@@ -20,6 +20,9 @@ export const scrollSlice = createSlice({
         decrement: (state: ScrollSlice) => {
             state.level -= 1;
         },
+        setLevel: (state: ScrollSlice, action) => {
+            state.level = action.payload;
+        },
         selectProject: (state: ScrollSlice, action) => {
             state.project = action.payload;
         },
@@ -29,6 +32,6 @@ export const scrollSlice = createSlice({
     },
 });
 
-export const { increment, decrement, selectProject, allProjects } =
+export const { increment, decrement, setLevel, selectProject, allProjects } =
     scrollSlice.actions;
 export default scrollSlice.reducer;

@@ -1,8 +1,8 @@
-import callme from "../../assets/images/projects/callme.png";
-import f12 from "../../assets/images/projects/f12.png";
-import eco from "../../assets/images/projects/eco.png";
-import pinnacle from "../../assets/images/projects/pinnacle.png";
-import evmet from "../../assets/images/projects/evmet.png";
+import callme from "../../assets/images/projects/callmelogo.png";
+import f12 from "../../assets/images/projects/f12logo.png";
+import eco from "../../assets/images/projects/eco4ulogo.png";
+import pinnacle from "../../assets/images/projects/pinnaclelogo.png";
+import evmet from "../../assets/images/projects/evmetlogo.png";
 
 interface Data {
     id: number;

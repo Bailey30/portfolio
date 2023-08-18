@@ -1,13 +1,47 @@
         @use "./styles/colors.scss" as *;
         .background {
+            position: relative;
             height: 100vh;
             overflow: hidden;
             background: $grey1;
             background-color: #e6dfdf;
             .movingContainer {
                 transition: all 0.7s ease;
+                position: relative;
+                // z-index: 0 // background-color: red;
             }
             .work {
                 transform: translate3d(0, -100vh, 0);
             }
+            .Evmet {
+                // background-color: #FFFFFF;
+            }
+            .Pinnacle {
+                // background-color: #0A0A0A;
+                // transition: all 2s ease;
+            }
+            .Evmet,
+            .Pinnacle,
+            .Callme,
+            .eco4u,
+            .F12Performance {
+                ~.filterDiv {
+                    opacity: 0;
+                }
+            }
+            filter: blur(0px);
+        }
+        
+        .filterDiv {
+            position: absolute;
+            z-index: 1;
+            top: 0;
+            left: 0;
+            height: 100%;
+            width: 100%;
+            opacity: 30%;
+            opacity: 0%;
+            pointer-events: NONE;
+            background-color: green;
+            // filter: url(#noiseFilter) blur(2px);
         }

@@ -12,11 +12,13 @@ import {
 } from "../../redux/slices/scrollSlice";
 import ProjectInfo from "../projectInfo/ProjectInfo";
 import { RootState } from "../../redux/store";
+import Nav from "../nav/Nav";
 
 interface Props {
     sectionHovered: boolean;
 }
 const Projects = ({ sectionHovered }: Props) => {
+    const location = window.location.pathname;
     const dispatch = useDispatch();
     const project = useSelector((state: RootState) => state.scroll.project);
     const [parentHovered, setParentHovered] = useState<boolean>(false);
@@ -41,28 +43,38 @@ const Projects = ({ sectionHovered }: Props) => {
     }, []);
 
     useEffect(() => {
-        window.addEventListener("popstate", (e) => {
-            const state = e.state;
-            if (state) {
-                dispatch(selectProject(state));
-            } else {
-                dispatch(allProjects());
-            }
-        });
+        console.log({ project });
+    }, [project]);
 
-        return () => {
-            window.removeEventListener("popstate", () => {});
-        };
-    }, []);
+    // useEffect(() => {
+    //     window.addEventListener("popstate", (e) => {
+    //         const state = e.state;
+    //         console.log({ state });
+    //         let currentPath = window.location.pathname;
+    //         console.log({ currentPath });
+    //         if (state === null) {
+    //             console.log("state is null");
+
+    //             return;
+    //         }
+    //         if (state.split("/")[1]) {
+    //             console.log("forward");
+    //             dispatch(selectProject(state));
+    //         } else {
+    //             dispatch(allProjects());
+    //         }
+    //     });
+
+    //     return () => {
+    //         window.removeEventListener("popstate", () => {});
+    //     };
+    // }, [mount]);
 
     return (
-        <div
-            className={`${styles.projectsContainer} ${
-                project !== "all" && styles.infoVisible
-            }`}
-        >
+        <div className={`${styles.projectsContainer}`}>
             <div className={styles.allProjects}>
                 <div className={styles.nav}>
+                    {/* <Nav location="work" /> */}
                     <img
                         src={squareArrow}
                         alt="arrow"
@@ -91,12 +103,12 @@ const Projects = ({ sectionHovered }: Props) => {
                         );
                     })}
                 </div>
-                {sectionHovered && (
+                {sectionHovered && !expand && (
                     <HoverImage active={active} parentHovered={parentHovered} />
                 )}
-            </div>
-            <div className={styles.projectInfo}>
-                <ProjectInfo />
+                <div className={styles.footer}>
+                    <Nav />
+                </div>
             </div>
         </div>
     );

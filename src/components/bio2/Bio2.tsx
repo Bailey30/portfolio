@@ -12,6 +12,7 @@ const Bio = () => {
 
     function scrollDown() {
         dispatch(increment());
+        window.history.pushState("work", "", "work");
     }
 
     return (
