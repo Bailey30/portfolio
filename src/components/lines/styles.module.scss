@@ -1,26 +1,17 @@
 @use "../../styles/colors.scss" as *;
 .linesContainer {
-    // padding: 0 50px;
-    // max-width: 1300px;
     width: 100%;
-    // margin: 0 auto;
     height: 100%; // todo calculate proper height and make canvas controller respond on resize
     margin-top: -10px;
     position: absolute;
     top: 0%;
     left: 50%;
-    // opacity: 0.5;
     transform: translate(-50%, 0%);
-    // border-bottom: 1px solid $black;
-    // border: 10px solid red;
-    // mix-blend-mode: multiply;
-    // filter: grayscale(0%) invert(50%);
+    @media (max-width: 1000px) {
+        display: none;
+    }
 }
 
 canvas {
-    // border: 1px solid red;
-    // max-width: 100%;
-    // max-height: 100%;
-    // border: 10px solid red;
     filter: blur(10px);
 }

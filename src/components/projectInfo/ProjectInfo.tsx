@@ -33,20 +33,12 @@ const ProjectInfo = () => {
         console.log(project);
         if (project !== "all") {
             setInfo(data[project.split(" ").join("")]);
-        } else if (project === "all") {
-            setTimeout(() => {
-                // setImageLoaded(false);
-            }, 300);
         }
     }, [project]);
 
     function handleReturnToProjects() {
         dispatch(allProjects());
     }
-
-    useEffect(() => {
-        console.log(imageLoaded);
-    }, [imageLoaded]);
 
     return (
         <div className={`${styles.infoContainer}`}>
@@ -61,23 +53,18 @@ const ProjectInfo = () => {
 
                 <div className={styles.infoInner}>
                     <div className={`${styles.imageContainer}`}>
-                        <div
-                            className={`${styles.divInner} ${
-                                imageLoaded && styles.visible
-                            }`}
-                        >
-                            {
-                                <img
-                                    src={info.img}
-                                    alt="gif showing website"
-                                    onLoad={() => setImageLoaded(true)}
-                                />
-                            }
-                        </div>
+                        {
+                            <img
+                                src={info.img}
+                                alt="gif showing website"
+                                onLoad={() => setImageLoaded(true)}
+                            />
+                        }
                     </div>
                     <div className={styles.name}>
                         <h3>
-                            {project} - {info.role}
+                            {info.name} <span className={styles.dash}>-</span>{" "}
+                            <span className={styles.role}>{info.role}</span>
                         </h3>
                         <a href={info.link} target="_blank" rel="noreferrer">
                             visit site
@@ -85,7 +72,6 @@ const ProjectInfo = () => {
                         </a>
                     </div>
                     <div className={styles.date}>{info.date}</div>
-                    {/* <div className={styles.role}>{info.role}</div> */}
                     <div className={styles.tools}>{info.tools.join(" / ")}</div>
                 </div>
             </div>

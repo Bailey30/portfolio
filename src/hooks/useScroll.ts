@@ -57,10 +57,6 @@ export const useScroll = () => {
     }, []);
 
     useEffect(() => {
-        console.log({ level });
-    }, [level]);
-
-    useEffect(() => {
-        prevLevelRef.current = level; // Update the previous level when 'level' changes
+        prevLevelRef.current = level;
     }, [level]);
 };

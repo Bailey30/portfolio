@@ -1,12 +1,13 @@
 @use "../../styles/colors.scss" as *;
 .projectContainer {
+    cursor: pointer;
     position: relative;
-    // z-index: 1000000;
     transition: all 0.3s ease;
-    height: 150px;
+    height: 20%;
+    display: flex;
+    align-items: center;
     &.expanded {
         height: 100%;
-        // border: 1px solid red;
     }
     &.otherExpanded {
         height: 35px;
@@ -15,14 +16,9 @@
 }
 
 .projectTitleContainer {
-    cursor: pointer;
     position: relative;
-    // z-index: 100000000;
-    // z-index: 30;
     display: flex;
     align-items: center;
-    height: 150px;
-    // height: 50px;
     overflow: hidden;
     transition: all 0.3s ease;
     padding: 0 50px;
@@ -36,13 +32,10 @@
     }
     &.expanded {
         height: 50px;
-        // border: 1px solid red;
     }
     &.otherExpanded {
         height: 35px;
         pointer-events: none;
-        // align-items: flex-end;
-        // border-bottom: 2px solid black;
         img {
             width: 45px;
         }
@@ -57,15 +50,8 @@
     }
 }
 
-.wordContainer {
-    // z-index: 20;
-    // mix-blend-mode: difference;
-    // isolation: isolate;
-}
-
 .otherIsActive {
     opacity: 0.5;
-    // background-color: $grey1;
 }
 
 .ellipse {
@@ -113,20 +99,11 @@
 
 .arrow {
     height: 100%;
-    // border: 1px solid red;
     display: flex;
     align-items: center;
-    // justify-content: center;
-    // border: 1px solid red;
-    // opacity: 0;
     margin-left: auto;
-    // border: 3px solid $green3;
-    // border-radius: 50%;
-    // width: 60px;
-    // transition: 0.3s ease;
     overflow: hidden;
     img {
-        // border: 1px solid red;
         transform: translateX(-100%);
         width: 40px;
         animation: out 0.35s forwards;
@@ -134,14 +111,23 @@
     }
     &.visible {
         opacity: 1;
-        // transform: translateX(-0%);
-        // img {
-        //     animation: in 0.35s forwards;
-        //     animation-timing-function: cubic-bezier(.95, 0, .66, 1)
-        // }
     }
-    // img {
-    //     width: 70px;
-    //     margin: 0 auto;
-    // }
+}
+
+@media (max-width: 900px) {
+    .otherIsActive {
+        opacity: 1;
+    }
+    .projectTitleContainer {
+        img {
+            width: 20px;
+            margin-right: 20px;
+        }
+    }
+}
+
+@media (max-width: 500px) {
+    .projectTitleContainer {
+        padding: 0 25px;
+    }
 }

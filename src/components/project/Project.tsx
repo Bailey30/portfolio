@@ -64,13 +64,11 @@ const Project = ({
             } 
            
             `}
+            onMouseEnter={() => handleHoverEnter()}
+            onMouseLeave={() => handleHoverExit()}
+            onClick={() => handleSelectInfo()}
         >
-            <div
-                className={`${styles.projectTitleContainer} `}
-                onMouseEnter={() => handleHoverEnter()}
-                onMouseLeave={() => handleHoverExit()}
-                onClick={() => handleSelectInfo()}
-            >
+            <div className={`${styles.projectTitleContainer} `}>
                 <img
                     src={bulletSource}
                     alt="bullet point"

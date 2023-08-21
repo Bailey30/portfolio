@@ -7,11 +7,13 @@ import Work from "./sections/work/Work";
 import { useSelector } from "react-redux";
 import { RootState } from "./redux/store";
 import UseHistory from "./hooks/useHistory";
+import UseTouchNavigate from "./hooks/useTouchNavigate.";
 
 type Section = "styles.landing" | "styles.work";
 function App() {
     useScroll();
     UseHistory();
+    UseTouchNavigate();
 
     useEffect(() => {
         window.addEventListener("load", () => {
@@ -31,7 +33,7 @@ function App() {
 
     return (
         <>
-            <div className={`${styles.background}`}>
+            <div className={`${styles.background}`} id="app">
                 <div
                     className={`${styles.movingContainer} ${
                         styles[sections[level]]

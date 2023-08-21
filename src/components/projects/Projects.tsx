@@ -42,39 +42,10 @@ const Projects = ({ sectionHovered }: Props) => {
         }
     }, []);
 
-    useEffect(() => {
-        console.log({ project });
-    }, [project]);
-
-    // useEffect(() => {
-    //     window.addEventListener("popstate", (e) => {
-    //         const state = e.state;
-    //         console.log({ state });
-    //         let currentPath = window.location.pathname;
-    //         console.log({ currentPath });
-    //         if (state === null) {
-    //             console.log("state is null");
-
-    //             return;
-    //         }
-    //         if (state.split("/")[1]) {
-    //             console.log("forward");
-    //             dispatch(selectProject(state));
-    //         } else {
-    //             dispatch(allProjects());
-    //         }
-    //     });
-
-    //     return () => {
-    //         window.removeEventListener("popstate", () => {});
-    //     };
-    // }, [mount]);
-
     return (
         <div className={`${styles.projectsContainer}`}>
             <div className={styles.allProjects}>
                 <div className={styles.nav}>
-                    {/* <Nav location="work" /> */}
                     <img
                         src={squareArrow}
                         alt="arrow"

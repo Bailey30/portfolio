@@ -17,6 +17,9 @@
         min-width: 101%;
         margin: 0 auto;
     }
+    @media (max-width: 1000px) {
+        display: none;
+    }
 }
 
 .prevImage {
