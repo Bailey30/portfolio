@@ -88,7 +88,7 @@
     background-clip: text;
     -webkit-background-clip: text;
     color: rgba(0, 0, 0, 0.2);
-    background-size: 200vw 100vh;
+    background-size: 200vw 100dvh;
     background-position: calc(var(--mouse-x) - 100vw), calc(var(--mouse-y) - 100vw);
     transition: background-position 2s ease;
 }

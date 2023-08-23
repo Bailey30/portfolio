@@ -1,0 +1,108 @@
+AWSTemplateFormatVersion: '2010-09-09'
+Transform: AWS::Serverless-2016-10-31
+Description: >
+  portfolio
+  Creates the infrastructure to host and expose a Single Page Application:
+      - An Amazon S3 bucket for hosting the application
+      - An Amazon CloudFront distribution to expose the application
+      - An Amazon S3 bucket for hosting bucket and cloudfront access logs
+      - A public API to be used by the application to demonstrate CORS configuration
+
+
+ 
+  
+# More info about Globals: https://github.com/awslabs/serverless-application-model/blob/master/docs/globals.rst
+Globals:
+  Function:
+    Timeout: 3
+
+Resources:
+  portfolioBucket:
+    Type: AWS::S3::Bucket
+    Properties:
+      AccessControl: Private
+      BucketName: "portfolioBucket"
+
+  CloudFrontOriginAccessControl:
+    Type: AWS::CloudFront::OriginAccessControl
+    Properties:
+      OriginAccessControlConfig:
+        Name: portfolio-OAC
+        OriginAccessControlOriginType: s3
+        SigningBehavior: always
+        SigningProtocol: sigv4
+        Description: "origin access control(OAC) for allowing cloudfront to access S3 bucket"
+
+  portfolioCloudFrontDistribution:
+    Type: AWS::CloudFront::Distribution
+    DependsOn:
+      - portfolioBucket
+    Properties:
+      DistributionConfig:
+        Origins:
+          - DomainName: !Sub "portfolioBucket.${AWS::Region}.amazonaws.com"
+            Id: static-hosting
+            S3OriginConfig:
+              OriginAccessIdentity: ""
+            OriginAccessControlId: !GetAtt CloudFrontOriginAccessControl.Id
+        Enabled: true
+        DefaultRootObject: index.html
+        CustomErrorResponses:
+          - ErrorCode: 404
+            ResponseCode: 200
+            ResponsePagePath: /index.html
+          - ErrorCode: 403
+            ResponseCode: 200
+            ResponsePagePath: /index.html
+        HttpVersion: http2
+        # Aliases:
+        #   - web.example.com
+        # ViewerCertificate:
+        #   AcmCertificateArn: "arn:aws:acm:us-east-1:Id-of-IAM-User:certificate/1xxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxxx"
+        #   MinimumProtocolVersion: TLSv1.2_2021
+        #   SslSupportMethod: sni-only
+        DefaultCacheBehavior:
+          AllowedMethods:
+            - DELETE
+            - GET
+            - HEAD
+            - OPTIONS
+            - PATCH
+            - POST
+            - PUT
+          Compress: true
+          TargetOriginId: static-hosting
+          ForwardedValues:
+            QueryString: false
+            Cookies:
+              Forward: none
+          ViewerProtocolPolicy: redirect-to-https
+
+  BucketPolicy:
+    Type: AWS::S3::BucketPolicy
+    Properties:
+      Bucket: "portfolioBucket"
+      PolicyDocument:
+        Version: "2012-10-17"
+        Statement:
+          - Effect: Allow
+            Principal:
+              Service: "cloudfront.amazonaws.com"
+            Action: "s3:GetObject"
+            Resource: "arn:aws:s3:::portfolioBucket/*"
+            Condition:
+              StringEquals:
+                AWS:SourceArn: !Sub "arn:aws:cloudfront::${AWS::AccountId}:distribution/${portfolioCloudFrontDistribution}"
+
+
+Outputs:
+  S3BucketName:
+    Value:
+      Ref: portfolioBucket
+  OriginalAccessControl:
+    Value:
+      Ref: CloudFrontOriginAccessControl
+  CloudFrontDist:
+    Value:
+      Ref: portfolioCloudFrontDistribution
+  

@@ -13,6 +13,7 @@ export default function UseHistory() {
         const state = e.state;
 
         if (state === null) {
+            console.log("state is null");
             dispatch(setLevel(0));
         }
 
@@ -29,6 +30,7 @@ export default function UseHistory() {
     useEffect(() => {
         console.log({ location });
         window.addEventListener("popstate", handleHistory);
+        window.addEventListener("pushstate", () => {});
 
         return () => {
             window.removeEventListener("popstate", handleHistory);

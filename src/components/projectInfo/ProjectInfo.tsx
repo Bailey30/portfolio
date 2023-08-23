@@ -38,6 +38,7 @@ const ProjectInfo = () => {
 
     function handleReturnToProjects() {
         dispatch(allProjects());
+        window.history.pushState({}, "", "/work");
     }
 
     return (

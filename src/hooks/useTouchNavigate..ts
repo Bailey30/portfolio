@@ -110,6 +110,9 @@ export default function UseTouchNavigate() {
                     projectRef.current !== "all"
                 ) {
                     dispatch(allProjects());
+                    if (prevLevelRef.current === 1) {
+                        window.history.pushState({}, "", "/work");
+                    }
                 }
             });
         });

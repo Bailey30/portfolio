@@ -42,6 +42,11 @@ const Projects = ({ sectionHovered }: Props) => {
         }
     }, []);
 
+    function handleReturnToHome() {
+        dispatch(decrement());
+        window.history.pushState(null, "", "/");
+    }
+
     return (
         <div className={`${styles.projectsContainer}`}>
             <div className={styles.allProjects}>
@@ -49,7 +54,7 @@ const Projects = ({ sectionHovered }: Props) => {
                     <img
                         src={squareArrow}
                         alt="arrow"
-                        onClick={() => dispatch(decrement())}
+                        onClick={() => handleReturnToHome()}
                     />
                 </div>
                 <div
