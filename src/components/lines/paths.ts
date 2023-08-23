@@ -71,7 +71,6 @@ export class Paths {
     }
 
     stopAnimation() {
-        console.log("stop");
         cancelAnimationFrame(currentAnimation);
     }
     draw(timeStamp: number) {

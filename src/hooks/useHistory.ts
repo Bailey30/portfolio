@@ -12,8 +12,8 @@ export default function UseHistory() {
     function handleHistory(e: any) {
         const state = e.state;
 
+        // "state" represents the page you want to navigate to
         if (state === null) {
-            console.log("state is null");
             dispatch(setLevel(0));
         }
 
@@ -22,15 +22,14 @@ export default function UseHistory() {
             dispatch(allProjects());
         }
 
+        // when you use the browser back button and it takes you from all projects to a specific project
         if (state !== "work" && state !== null) {
             dispatch(selectProject(state));
         }
     }
 
     useEffect(() => {
-        console.log({ location });
         window.addEventListener("popstate", handleHistory);
-        window.addEventListener("pushstate", () => {});
 
         return () => {
             window.removeEventListener("popstate", handleHistory);

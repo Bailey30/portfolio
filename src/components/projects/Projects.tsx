@@ -83,7 +83,7 @@ const Projects = ({ sectionHovered }: Props) => {
                     <HoverImage active={active} parentHovered={parentHovered} />
                 )}
                 <div className={styles.footer}>
-                    <Nav />
+                    <Nav location="work/all" />
                 </div>
             </div>
         </div>

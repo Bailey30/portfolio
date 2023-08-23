@@ -10,7 +10,6 @@ export default function UseTouchNavigate() {
     const projectRef = useRef<string>(project);
 
     useEffect(() => {
-        console.log({ project });
         projectRef.current = project;
     }, [project]);
 
@@ -89,9 +88,6 @@ export default function UseTouchNavigate() {
         window.addEventListener("load", () => {
             let el = document.getElementById("app");
             swipedetect(el, function (swipedir) {
-                if (swipedir !== "none") {
-                    console.log(swipedir);
-                }
                 if (swipedir === "up" && prevLevelRef.current !== 1) {
                     dispatch(increment());
 
@@ -111,7 +107,7 @@ export default function UseTouchNavigate() {
                 ) {
                     dispatch(allProjects());
                     if (prevLevelRef.current === 1) {
-                        window.history.pushState({}, "", "/work");
+                        window.history.pushState(null, "", "/work");
                     }
                 }
             });

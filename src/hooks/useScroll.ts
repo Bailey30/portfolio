@@ -17,7 +17,6 @@ export const useScroll = () => {
     const projectRef = useRef<string>(project);
 
     useEffect(() => {
-        console.log({ project });
         projectRef.current = project;
     }, [project]);
 
@@ -36,8 +35,6 @@ export const useScroll = () => {
                 window.history.pushState("work", "", "work");
             }
         } else if (event.deltaY < 0 && prevLevelRef.current > 0) {
-            console.log("decrement");
-            console.log({ project });
             if (projectRef.current !== "all") {
                 return;
             } else {
