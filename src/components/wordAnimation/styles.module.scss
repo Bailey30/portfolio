@@ -3,13 +3,14 @@
     position: relative;
     width: calc(max-content + 30px);
     overflow: hidden;
-    margin-right: 30px;
+    // margin-right: 30px;
     h2 {
         font-weight: 200;
-        font-size: 48px;
-        letter-spacing: 4px;
+        font-size: 40px;
+        // letter-spacing: 4px;
         mix-blend-mode: difference;
         color: rgb(77, 77, 77);
+        // font-family: 'PT Serif', serif !important;
     }
 }
 
@@ -19,9 +20,9 @@
 
 .newWord {
     position: absolute;
-    transform: translateY(-8%);
+    // transform: translateY(-8%);
     font-style: italic;
-    letter-spacing: 2px !important;
+    // letter-spacing: -px !important;
 }
 
 .letter {
@@ -30,12 +31,14 @@
     transition: all 0.25s;
     transition-timing-function: cubic-bezier(.86, .02, .55, .95);
     z-index: 20;
+    // font-size: 3px;
+    // font-family: 'IBM Plex Serif', serif;
 }
 
 .letter_1 {}
 
 .isHovered {
-    transform: translateY(-90%);
+    transform: translateY(-100%);
 }
 
 @for $i from 0 through 20 {
@@ -51,9 +54,23 @@
     }
     .wordContainer {
         h2 {
-            font-size: 30px;
+            // font-size: 20px;
+            border: 1px solid red;
             // font-weight: 300;
         }
+    }
+}
+
+@media (max-width: 750px) {
+    // transform: translateY(-8%);
+    .wordContainer {
+        transform: translateY(2px);
+        h2 {
+            font-size: 25px;
+        }
+    }
+    .space {
+        width: 5px;
     }
 }
 

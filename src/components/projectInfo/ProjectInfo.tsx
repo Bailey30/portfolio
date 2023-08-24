@@ -7,6 +7,7 @@ import { RootState } from "../../redux/store";
 import Nav from "../nav/Nav";
 import squareArrowGreen from "../../assets/images/squareArrow2green.svg";
 import squareArrow from "../../assets/images/squareArrow2.svg";
+import thinArrow from "../../assets/images/thinArrow.svg";
 
 interface infoI {
     img: string;
@@ -38,7 +39,7 @@ const ProjectInfo = () => {
 
     function handleReturnToProjects() {
         dispatch(allProjects());
-        window.history.pushState("work", "", "/work");
+        window.history.pushState(null, "", "/");
     }
 
     return (
@@ -46,10 +47,11 @@ const ProjectInfo = () => {
             <div className={styles.info}>
                 <div className={styles.nav}>
                     <img
-                        src={squareArrow}
+                        src={thinArrow}
                         alt="arrow"
                         onClick={() => handleReturnToProjects()}
                     />
+                    {/* <span onClick={() => handleReturnToProjects()}>BACK</span> */}
                 </div>
 
                 <div className={styles.infoInner}>
@@ -63,22 +65,22 @@ const ProjectInfo = () => {
                         }
                     </div>
                     <div className={styles.name}>
-                        <h3>
-                            {info.name} <span className={styles.dash}>-</span>{" "}
-                            <span className={styles.role}>{info.role}</span>
-                        </h3>
+                        <h3>{info.name}</h3>
                         <a href={info.link} target="_blank" rel="noreferrer">
-                            visit site
+                            visit <span className={styles.site}>site</span>
                             <img src={squareArrowGreen} alt="arrow in link" />
                         </a>
                     </div>
-                    <div className={styles.date}>{info.date}</div>
+                    <div className={styles.date}>
+                        <span className={styles.role}>{info.role}</span> -{" "}
+                        {info.date}
+                    </div>
                     <div className={styles.tools}>{info.tools.join(" / ")}</div>
                 </div>
             </div>
-            <div className={styles.footer}>
+            {/* <div className={styles.footer}>
                 <Nav />
-            </div>
+            </div> */}
         </div>
     );
 };

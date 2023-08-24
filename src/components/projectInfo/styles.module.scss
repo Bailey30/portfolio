@@ -31,8 +31,11 @@
         margin: 0 auto;
         margin-bottom: auto;
         position: relative;
-        color: rgb(77, 77, 77);
+        // color: rgb(77, 77, 77);
         .nav {
+            span {
+                cursor: pointer;
+            }
             position: absolute;
             left: 0;
             top: 0;
@@ -56,39 +59,33 @@
                 margin-bottom: 5px;
                 align-items: center;
                 h3 {
-                    font-weight: 300;
-                    font-size: 38px;
-                    line-height: 30px;
+                    font-weight: 500;
+                    font-size: 30px;
+                    line-height: 40px;
                 }
                 a {
-                    position: relative;
-                    color: $green3;
-                    font-style: italic;
-                    display: flex;
-                    font-weight: 700;
-                    justify-content: center;
-                    align-items: center;
-                    font-size: 18px;
-                    border: 5px solid $green3;
-                    border-radius: 50%;
-                    height: 55px;
-                    width: 125px;
+                    line-height: 40px;
+                    font-weight: 500;
+                    font-size: 30px;
                     img {
                         height: 12px;
                         transform: rotate(-90deg);
                         margin-left: 5px;
                         margin-top: 2px;
+                        display: none;
                     }
                 }
             }
             .date {
                 font-weight: 300;
-                margin-bottom: 3px;
+                font-style: italic;
+                // margin-bottom: 8px;
             }
             .tools {
-                font-weight: 300;
-                font-size: 25px;
+                font-weight: 200;
+                font-size: 30px;
                 line-height: 45px;
+                // border: 1px solid red;
             }
         }
     }
@@ -120,7 +117,7 @@
                     }
                 }
                 .tools {
-                    font-size: 20px;
+                    // font-size: 20px;
                 }
             }
         }
@@ -148,22 +145,26 @@
             }
             .infoInner {
                 .name {
-                    margin-bottom: 7px;
                     h3 {
-                        font-weight: 200;
-                        letter-spacing: 4px;
+                        // font-weight: 200;
+                        // letter-spacing: 4px
                         display: flex;
-                        font-size: 30px;
+                        font-size: 20px;
                         flex-wrap: wrap;
+                        line-height: 30px;
                         .role {
                             flex-basis: 100%;
-                            font-size: 20px;
-                            margin-top: 10px;
-                            letter-spacing: 0;
+                            font-weight: 200;
+                            // margin-top: 7px;
                         }
                         .dash {
-                            display: none;
+                            // display: none;
+                            opacity: 0;
+                            margin-right: auto;
                         }
+                    }
+                    a {
+                        font-size: 20px;
                     }
                 }
                 .date {
@@ -171,7 +172,8 @@
                 }
                 .tools {
                     font-weight: 200;
-                    line-height: 45px;
+                    font-size: 20px;
+                    line-height: 30px;
                 }
             }
         }
@@ -182,15 +184,22 @@
             .infoInner {
                 .name {
                     h3 {
-                        font-size: 25px;
+                        font-size: 20px;
+                        line-height: 20px;
+                        font-weight: 600;
+                        .role {
+                            flex-basis: 100%;
+                            font-weight: 200;
+                            margin-top: 7px;
+                        }
                     }
                     a {
-                        border-width: 2px;
                         font-size: 14px;
-                        height: 50px;
-                        min-width: 100px;
-                        position: relative;
-                        bottom: 18px;
+                        text-decoration: underline;
+                        font-style: italic;
+                        .site {
+                            display: none;
+                        }
                     }
                 }
                 .date {

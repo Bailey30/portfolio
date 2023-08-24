@@ -1,3 +1,9 @@
 .sectionContainer {
     height: 100dvh;
+    width: 200vw;
+    display: flex;
+    transition: all 0.7s ease;
+    &.infoVisible {
+        transform: translateX(-50%);
+    }
 }

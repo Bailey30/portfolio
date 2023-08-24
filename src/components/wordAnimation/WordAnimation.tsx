@@ -17,7 +17,7 @@ const WordAnimation = ({ word, isHovered, type, otherExpanded }: Props) => {
                 type === "view" && styles.view
             } ${otherExpanded && styles.otherExpanded}`}
         >
-            <h2 className={styles.originalWord}>
+            <h3 className={styles.originalWord}>
                 {splitWord.map((letter, i) => {
                     return (
                         <div
@@ -32,8 +32,8 @@ const WordAnimation = ({ word, isHovered, type, otherExpanded }: Props) => {
                         </div>
                     );
                 })}
-            </h2>
-            <h2 className={styles.newWord}>
+            </h3>
+            <h3 className={styles.newWord}>
                 {splitWord.map((letter, i) => {
                     return (
                         <div
@@ -48,7 +48,7 @@ const WordAnimation = ({ word, isHovered, type, otherExpanded }: Props) => {
                         </div>
                     );
                 })}
-            </h2>
+            </h3>
         </div>
     );
 };

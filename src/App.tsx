@@ -11,7 +11,7 @@ import UseTouchNavigate from "./hooks/useTouchNavigate.";
 
 type Section = "styles.landing" | "styles.work";
 function App() {
-    useScroll();
+    // useScroll();
     UseHistory();
     UseTouchNavigate();
 

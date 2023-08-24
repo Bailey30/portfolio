@@ -1,32 +1,32 @@
-import React, { useEffect, useRef } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import styles from "./styles.module.scss";
 import bee from "../../assets/images/greenBee.svg";
 import Arrow from "../../assets/images/arrow";
-import { increment } from "../../redux/slices/scrollSlice";
+import { increment, selectProject } from "../../redux/slices/scrollSlice";
 import { useDispatch } from "react-redux";
 import Lines from "../lines/Lines";
 import thinArrow from "../../assets/images/thinArrow.svg";
+import WordAnimation from "../wordAnimation/WordAnimation";
+
+const projectNames = [
+    "Call me",
+    "F12 Performance",
+    "Evmet",
+    "eco4u",
+    "Pinnacle",
+];
 
 const Bio = () => {
     const dispatch = useDispatch();
     const bioRef = useRef<HTMLDivElement>(null);
+    const [isHovered, setIsHovered] = useState<number | undefined>(undefined);
 
-    useEffect(() => {
-        const bio = bioRef.current;
-        if (!bio) return;
-        document.addEventListener("mousemove", (event: any) => {
-            const mouseX = event.clientX;
-            const mouseY = event.clientY;
+    function handleSelectInfo(name: string) {
+        dispatch(selectProject(name));
+        let currentPath = window.location.pathname;
+        let newPath = currentPath + name.split(" ").join("");
 
-            const v = getComputedStyle(bio).getPropertyValue("--mouse-x");
-
-            bio.style.setProperty("--mouse-x", `${mouseX}px`);
-            bio.style.setProperty("--mouse-y", `${mouseY}px`);
-        });
-    }, []);
-
-    function scrollDown() {
-        dispatch(increment());
+        window.history.pushState(name, "", newPath);
     }
 
     return (
@@ -53,38 +53,51 @@ const Bio = () => {
                             GitHub
                         </a>
                     </div>
-                    <div className={styles.row}>
-                        {/* <div className={styles.links}>
-                            <a
-                                href="https://www.linkedin.com/in/alex-bailey-9ba821229/"
-                                target="_blank"
-                                rel="noreferrer"
-                            >
-                                LinkedIn
-                            </a>
-                            <a
-                                href="https://www.github.com/bailey30"
-                                target="_blank"
-                                rel="noreferrer"
-                            >
-                                GitHub
-                            </a>
-                        </div> */}
-                    </div>
                 </div>
                 <div className={`${styles.works}`}>
                     <div className={styles.row}>
-                        <h2>SELECTED WORKS</h2>
+                        <h2>
+                            SELECTED WORKS{" "}
+                            <div className={styles.arrow}>
+                                <img
+                                    src={thinArrow}
+                                    alt="arrow"
+                                    className={`${styles.arrow} ${
+                                        isHovered !== undefined &&
+                                        styles.hovered
+                                    }`}
+                                />
+                            </div>
+                        </h2>
                     </div>
-                    <h3>Call me</h3>
-                    <span>&nbsp;/&nbsp;</span>
-                    <h3>F12 Performance</h3>
-                    <span>&nbsp;/&nbsp;</span>
-                    <h3>Evmet</h3>
-                    <span>&nbsp;/&nbsp;</span>
-                    <h3>eco4u</h3>
-                    <span>&nbsp;/&nbsp;</span>
-                    <h3>Pinnacle</h3>
+                    {projectNames.map((project, i) => {
+                        return (
+                            <>
+                                <h3
+                                    onMouseEnter={() => setIsHovered(i)}
+                                    onMouseLeave={() => setIsHovered(undefined)}
+                                    onClick={() => handleSelectInfo(project)}
+                                    className={`${
+                                        isHovered !== i &&
+                                        isHovered !== undefined &&
+                                        styles.otherHovered
+                                    }`}
+                                >
+                                    <WordAnimation
+                                        isHovered={isHovered === i && true}
+                                        word={project}
+                                        type="name"
+                                    />
+                                </h3>
+
+                                {i !== projectNames.length - 1 && (
+                                    <span className={styles.slash}>
+                                        &nbsp;/&nbsp;
+                                    </span>
+                                )}
+                            </>
+                        );
+                    })}
                 </div>
             </div>
         </div>

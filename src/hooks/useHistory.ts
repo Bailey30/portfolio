@@ -15,6 +15,7 @@ export default function UseHistory() {
         // "state" represents the page you want to navigate to
         if (state === null) {
             dispatch(setLevel(0));
+            dispatch(allProjects());
         }
 
         if (state === "work") {
