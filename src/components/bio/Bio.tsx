@@ -5,6 +5,7 @@ import Arrow from "../../assets/images/arrow";
 import { increment } from "../../redux/slices/scrollSlice";
 import { useDispatch } from "react-redux";
 import Lines from "../lines/Lines";
+import thinArrow from "../../assets/images/thinArrow.svg";
 
 const Bio = () => {
     const dispatch = useDispatch();
@@ -31,10 +32,29 @@ const Bio = () => {
     return (
         <div className={styles.bioSection} ref={bioRef}>
             <div className={styles.bioContainer}>
-                <div className={styles.bioTop}>
+                <div className={styles.bio}>
                     <div className={styles.row}>
-                        <h1>
-                            ALEX BAILEY {">>>>"}{" "}
+                        <h1>ALEX BAILEY</h1>{" "}
+                        <a
+                            href="https://www.linkedin.com/in/alex-bailey-9ba821229/"
+                            target="_blank"
+                            rel="noreferrer"
+                        >
+                            LinkedIn
+                        </a>
+                    </div>
+                    <div className={styles.row}>
+                        <h1>FULL STACK DEVELOPER</h1>
+                        <a
+                            href="https://www.github.com/bailey30"
+                            target="_blank"
+                            rel="noreferrer"
+                        >
+                            GitHub
+                        </a>
+                    </div>
+                    <div className={styles.row}>
+                        {/* <div className={styles.links}>
                             <a
                                 href="https://www.linkedin.com/in/alex-bailey-9ba821229/"
                                 target="_blank"
@@ -42,42 +62,29 @@ const Bio = () => {
                             >
                                 LinkedIn
                             </a>
-                        </h1>
-                    </div>
-                    <div className={styles.row}>
-                        <h1>
-                            DEVELOPER{" "}
-                            <span
-                                className={`${styles.github} ${styles.coloredText}`}
+                            <a
+                                href="https://www.github.com/bailey30"
+                                target="_blank"
+                                rel="noreferrer"
                             >
-                                <a
-                                    href="https://www.github.com/bailey30"
-                                    target="_blank"
-                                    rel="noreferrer"
-                                >
-                                    ./GitHub
-                                </a>
-                            </span>
-                        </h1>
-                    </div>
-                    <div className={styles.row}>
-                        <h1>MANCHESTER</h1>
-                        <img src={bee} alt="manchester bee" />
-                        <h1>ENGLAND</h1>
+                                GitHub
+                            </a>
+                        </div> */}
                     </div>
                 </div>
-                {/* <Lines /> */}
-                <div className={`${styles.row} ${styles.lastRow}`}>
-                    <div onClick={scrollDown}>
-                        <h4 className={`${styles.coloredText}`}>
-                            THINGS I'VE DONE{" "}
-                        </h4>
-                        <div className={`${styles.imageContainer} `}>
-                            <Arrow stroke="#D1FE2F" />
-                            {/* <Arrow stroke="#D1FE2F" /> */}
-                            {/* <Arrow stroke="#D1FE2F" /> */}
-                        </div>
+                <div className={`${styles.works}`}>
+                    <div className={styles.row}>
+                        <h2>SELECTED WORKS</h2>
                     </div>
+                    <h3>Call me</h3>
+                    <span>&nbsp;/&nbsp;</span>
+                    <h3>F12 Performance</h3>
+                    <span>&nbsp;/&nbsp;</span>
+                    <h3>Evmet</h3>
+                    <span>&nbsp;/&nbsp;</span>
+                    <h3>eco4u</h3>
+                    <span>&nbsp;/&nbsp;</span>
+                    <h3>Pinnacle</h3>
                 </div>
             </div>
         </div>

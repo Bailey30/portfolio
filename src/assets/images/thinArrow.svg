@@ -4,10 +4,10 @@
     <style>
       .cls-1 {
         fill: none;
-        stroke: #69bfa6;
+        stroke: rgb(3,1,0);
         stroke-linecap: round;
         stroke-linejoin: round;
-        stroke-width: 3px;
+        stroke-width: 4px;
       }
     </style>
   </defs>

@@ -11,12 +11,7 @@ const Landing = () => {
     return (
         <Section>
             <div className={`${styles.landingContainer} `}>
-                {/* <Bio /> */}
-                <Bio2 />
-
-                {/* <Trail /> */}
-                <Lines />
-                {/* <Grid /> */}
+                <Bio />
             </div>
         </Section>
     );
