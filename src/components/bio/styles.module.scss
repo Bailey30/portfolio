@@ -170,16 +170,22 @@
     }
     @media (max-width:750px) {
         margin-top: 10px;
+        justify-content: flex-end;
+        text-wrap: balance;
         h2 {
-            margin-right: 10px;
             font-weight: 600;
-            flex-basis: 100%;
+            // flex-basis: 100%;
+            text-align: right;
+            display: block;
+            width: 100%;
+            margin-right: 0;
         }
         h3 {
             font-style: italic;
             font-weight: 300;
             font-size: 16px;
         }
+        h3:last-child {}
     }
 }
 
@@ -210,5 +216,6 @@
     }
     @media (max-width: 750px) {
         // width: unset;
+        text-align: right;
     }
 }
