@@ -15,17 +15,17 @@ function App() {
     UseHistory();
     UseTouchNavigate();
 
-    useEffect(() => {
-        window.addEventListener("load", () => {
-            if (window.location.pathname !== "/") {
-                window.history.pushState(null, "", "/");
-            }
-        });
+    // useEffect(() => {
+    //     window.addEventListener("load", () => {
+    //         if (window.location.pathname !== "/") {
+    //             window.history.pushState(null, "", "/");
+    //         }
+    //     });
 
-        return () => {
-            window.removeEventListener("load", () => {});
-        };
-    }, []);
+    //     return () => {
+    //         window.removeEventListener("load", () => {});
+    //     };
+    // }, []);
 
     const { project, level } = useSelector((state: RootState) => state.scroll);
 
