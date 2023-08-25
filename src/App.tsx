@@ -15,18 +15,6 @@ function App() {
     UseHistory();
     UseTouchNavigate();
 
-    // useEffect(() => {
-    //     window.addEventListener("load", () => {
-    //         if (window.location.pathname !== "/") {
-    //             window.history.pushState(null, "", "/");
-    //         }
-    //     });
-
-    //     return () => {
-    //         window.removeEventListener("load", () => {});
-    //     };
-    // }, []);
-
     const { project, level } = useSelector((state: RootState) => state.scroll);
 
     const sections = ["landing", "work"];
@@ -34,11 +22,7 @@ function App() {
     return (
         <>
             <div className={`${styles.background}`} id="app">
-                <div
-                    className={`${styles.movingContainer} ${
-                        styles[sections[level]]
-                    } ${styles[project]}`}
-                >
+                <div className={`${styles.movingContainer}`}>
                     <Landing />
                     <Work />
                 </div>

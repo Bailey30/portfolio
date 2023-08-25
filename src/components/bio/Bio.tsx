@@ -2,7 +2,11 @@ import React, { useEffect, useRef, useState } from "react";
 import styles from "./styles.module.scss";
 import bee from "../../assets/images/greenBee.svg";
 import Arrow from "../../assets/images/arrow";
-import { increment, selectProject } from "../../redux/slices/scrollSlice";
+import {
+    increment,
+    selectProject,
+    setLevel,
+} from "../../redux/slices/scrollSlice";
 import { useDispatch } from "react-redux";
 import Lines from "../lines/Lines";
 import thinArrow from "../../assets/images/thinArrow.svg";
@@ -23,6 +27,7 @@ const Bio = () => {
 
     function handleSelectInfo(name: string) {
         dispatch(selectProject(name));
+        dispatch(setLevel(1));
         let currentPath = window.location.pathname;
         let newPath = currentPath + name.split(" ").join("");
 

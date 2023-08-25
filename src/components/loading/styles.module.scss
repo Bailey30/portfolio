@@ -1,0 +1,39 @@
+:root {
+    --width: 200px;
+    --height: 50px
+}
+
+.loading {
+    position: absolute;
+    top: 45%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    font-weight: 200;
+    font-size: 40px;
+    // border: 1px solid red;
+    &::before {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%) skew(15deg, 15deg);
+        // border: 1px solid rgba(0, 0, 0, 0.425);
+        width: 90%;
+        height: 140%;
+        content: "";
+        border-radius: 50%;
+    }
+    animation: blur 1s ease infinite alternate;
+    filter: blur(0px);
+    &.loaded {
+        opacity: 0;
+    }
+}
+
+@keyframes blur {
+    from {
+        filter: blur(0px);
+    }
+    to {
+        filter: blur(2px)
+    }
+}

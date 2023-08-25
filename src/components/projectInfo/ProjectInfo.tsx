@@ -1,6 +1,10 @@
 import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { allProjects, decrement } from "../../redux/slices/scrollSlice";
+import {
+    allProjects,
+    decrement,
+    setLevel,
+} from "../../redux/slices/scrollSlice";
 import styles from "./styles.module.scss";
 import { Data, data } from "./data";
 import { RootState } from "../../redux/store";
@@ -8,6 +12,7 @@ import Nav from "../nav/Nav";
 import squareArrowGreen from "../../assets/images/squareArrow2green.svg";
 import squareArrow from "../../assets/images/squareArrow2.svg";
 import thinArrow from "../../assets/images/thinArrow.svg";
+import Loading from "../loading/Loading";
 
 interface infoI {
     img: string;
@@ -32,13 +37,15 @@ const ProjectInfo = () => {
 
     useEffect(() => {
         console.log(project);
+        setImageLoaded(false);
         if (project !== "all") {
             setInfo(data[project.split(" ").join("")]);
         }
     }, [project]);
 
     function handleReturnToProjects() {
-        dispatch(allProjects());
+        // dispatch(allProjects());
+        dispatch(setLevel(0));
         window.history.pushState(null, "", "/");
     }
 
@@ -56,11 +63,18 @@ const ProjectInfo = () => {
 
                 <div className={styles.infoInner}>
                     <div className={`${styles.imageContainer}`}>
+                        <Loading imageLoaded={imageLoaded} />
+
                         {
                             <img
                                 src={info.img}
                                 alt="gif showing website"
-                                onLoad={() => setImageLoaded(true)}
+                                onLoad={() =>
+                                    setTimeout(() => {
+                                        setImageLoaded(true);
+                                    }, 1000)
+                                }
+                                className={`${imageLoaded && styles.loaded}`}
                             />
                         }
                     </div>
